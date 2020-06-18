@@ -14,6 +14,8 @@ public class GreetingService {
     }
 
     String sayHi() {
+        foo.getBar().testMessage();
+        bar.getFoo().testMessage();
         return "hello world";
     }
 }
