@@ -1,6 +1,7 @@
 package com.thoughtworks.capability.demospringioccontainer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -18,14 +19,13 @@ public class GreetingController {
         this.greetingService = greetingService;
     }
 
+    @Lookup
+    public GreetingService service() { return null;}
+
     @GetMapping("/greet")
     public String greet() {
-
-//        ApplicationContext context = new ClassPathXmlApplicationContext();
-//        GreetingService prototypebean1 = (GreetingService) context.getBean("greetingservice");
-//        System.out.println(prototypebean1);
-
-        return greetingService.sayHi();
+        return service().sayHi();
+        //return greetingService.sayHi();
     }
 
 }
